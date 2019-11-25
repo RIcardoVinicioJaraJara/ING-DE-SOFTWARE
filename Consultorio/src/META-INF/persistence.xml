@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="ConsultorioPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>Modelos.Enfermedad</class>
+    <class>Modelos.Consultaficha</class>
+    <class>Modelos.Alergia</class>
+    <class>Modelos.Consultamedica</class>
+    <class>Modelos.EnfermedadFicha</class>
+    <class>Modelos.Medicamento</class>
+    <class>Modelos.Recetas</class>
+    <class>Modelos.Cuenta</class>
+    <class>Modelos.Recetamedicamento</class>
+    <class>Modelos.Persona</class>
+    <class>Modelos.Fichamedica</class>
+    <class>Modelos.Transaccion</class>
+    <class>Modelos.Vacuna</class>
+    <class>Modelos.Paciente</class>
+    <class>Modelos.Turno</class>
+    <class>Modelos.Certificado</class>
+    <class>Modelos.Medico</class>
+    <class>Modelos.Secretario</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ingdesoft?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+    </properties>
+  </persistence-unit>
+</persistence>
