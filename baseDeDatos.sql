@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `Consultorio`.`Persona` (
   `per_telefono` VARCHAR(45) NULL,
   `per_fec_nacimiento` VARCHAR(45) NULL,
   `per_mail` VARCHAR(45) NULL,
+  `per_contro` VARCHAR(45) NULL,
   PRIMARY KEY (`per_id`))
 ENGINE = InnoDB;
 

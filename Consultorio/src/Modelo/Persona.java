@@ -37,7 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Persona.findByPreDireccion", query = "SELECT p FROM Persona p WHERE p.preDireccion = :preDireccion")
     , @NamedQuery(name = "Persona.findByPerTelefono", query = "SELECT p FROM Persona p WHERE p.perTelefono = :perTelefono")
     , @NamedQuery(name = "Persona.findByPerFecNacimiento", query = "SELECT p FROM Persona p WHERE p.perFecNacimiento = :perFecNacimiento")
-    , @NamedQuery(name = "Persona.findByPerMail", query = "SELECT p FROM Persona p WHERE p.perMail = :perMail")})
+    , @NamedQuery(name = "Persona.findByPerMail", query = "SELECT p FROM Persona p WHERE p.perMail = :perMail")
+    , @NamedQuery(name = "Persona.findByPerContro", query = "SELECT p FROM Persona p WHERE p.perContro = :perContro")})
 public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,6 +61,8 @@ public class Persona implements Serializable {
     private String perFecNacimiento;
     @Column(name = "per_mail")
     private String perMail;
+    @Column(name = "per_contro")
+    private String perContro;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "personaperid")
     private Collection<Secretario> secretarioCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "personaperid1")
@@ -136,6 +139,14 @@ public class Persona implements Serializable {
 
     public void setPerMail(String perMail) {
         this.perMail = perMail;
+    }
+
+    public String getPerContro() {
+        return perContro;
+    }
+
+    public void setPerContro(String perContro) {
+        this.perContro = perContro;
     }
 
     @XmlTransient
