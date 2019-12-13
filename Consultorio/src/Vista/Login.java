@@ -5,10 +5,7 @@
  */
 package vista;
 
-import Controlador.ControladorCliente;
-import Controlador.ControladorDoctor;
 import Controlador.ControladorPersona;
-import Controlador.ControladorSecretaria;
 
 /**
  *
@@ -19,13 +16,6 @@ public class Login extends javax.swing.JFrame {
     VentanaDoctor vd = new VentanaDoctor();
 
     ControladorPersona cp = new ControladorPersona();
-    ControladorDoctor cd = new ControladorDoctor();
-    ControladorSecretaria cs = new ControladorSecretaria();
-    ControladorCliente cc = new ControladorCliente();
-    /*VentanaCrearPaciente vcp = new VentanaCrearPaciente();
-    VentanaCrearSecretaria vcs = new VentanaCrearSecretaria();
-    VentanaSecretaria vs = new VentanaSecretaria();
-    VentanaCrearDoctor vcd = new VentanaCrearDoctor();*/
 
     /**
      * Creates new form Login
@@ -131,7 +121,7 @@ public class Login extends javax.swing.JFrame {
         String usuario = txtCedula.getText();
         String clave = txtClave.getText();
         String opc = (String) comElige.getSelectedItem();
-        String ver=cp.validar(usuario, clave, opc);
+        cp.validar(usuario, clave, opc);
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
