@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Ricardo/Desktop/ING-DE-SOFTWARE/Consultorio/src/Controlador/ControladoPaciente.java</file>
-            <file>file:/C:/Users/Ricardo/Desktop/ING-DE-SOFTWARE/Consultorio/src/Modelo/AlergiaFicha.java</file>
-            <file>file:/C:/Users/Ricardo/Desktop/ING-DE-SOFTWARE/Consultorio/src/Modelo/Persona.java</file>
-            <file>file:/C:/Users/Ricardo/Desktop/ING-DE-SOFTWARE/Consultorio/src/Modelo/Alergia.java</file>
-            <file>file:/C:/Users/Ricardo/Desktop/ING-DE-SOFTWARE/Consultorio/src/Vista/Login.java</file>
-            <file>file:/C:/Users/Ricardo/Desktop/ING-DE-SOFTWARE/Consultorio/src/Modelo/Paciente.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ING-DE-SOFTWARE/Consultorio/src/Vista/Login.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/ING-DE-SOFTWARE/Consultorio/src/Controlador/ControladorPersona.java</file>
         </group>
     </open-files>
 </project-private>

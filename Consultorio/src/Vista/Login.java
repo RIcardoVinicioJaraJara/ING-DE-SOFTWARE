@@ -3,19 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package vista;
 
-import java.awt.event.KeyEvent;
-import java.util.Enumeration;
-import java.util.List;
-import javax.swing.AbstractButton;
-import javax.swing.JOptionPane;
+import Controlador.ControladorCliente;
+import Controlador.ControladorDoctor;
+import Controlador.ControladorPersona;
+import Controlador.ControladorSecretaria;
 
 /**
  *
- * @author vinic
+ * @author Usuario
  */
 public class Login extends javax.swing.JFrame {
+
+    VentanaDoctor vd = new VentanaDoctor();
+
+    
+    ControladorPersona cp = new ControladorPersona();
+    ControladorDoctor cd = new ControladorDoctor();
+    ControladorSecretaria cs = new ControladorSecretaria();
+    ControladorCliente cc = new ControladorCliente();
+    /*VentanaCrearPaciente vcp = new VentanaCrearPaciente();
+    VentanaCrearSecretaria vcs = new VentanaCrearSecretaria();
+    VentanaSecretaria vs = new VentanaSecretaria();
+    VentanaCrearDoctor vcd = new VentanaCrearDoctor();*/
 
     /**
      * Creates new form Login
@@ -24,9 +35,6 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-        cedulaRoot = "1";
-        contraRoot = "1";
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -38,53 +46,34 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        buscarclientes = new javax.swing.JLabel();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        cedula = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        comElige = new javax.swing.JComboBox<>();
         txtCedula = new javax.swing.JTextField();
-        direcion5 = new javax.swing.JLabel();
-        txtContra = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
+        txtClave = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("LOGIN");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("USUARIO");
+        jLabel1.setText("CEDULA");
 
-        buscarclientes.setFont(new java.awt.Font("Trebuchet MS", 3, 24)); // NOI18N
-        buscarclientes.setText("SELECCIONE MODO INGRESO");
+        jLabel2.setText("PASSWORD");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("SECRETARIA");
+        comElige.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PACIENTE", "SECRETARIA", "DOCTOR" }));
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("ADMINISTRADOR");
-
-        cedula.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        cedula.setText("CEDULA:   ");
-
-        txtCedula.setText("1");
-        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCedulaKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCedulaKeyTyped(evt);
+        btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        direcion5.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        direcion5.setText("CONTRASEÑA:");
-
-        txtContra.setText("1");
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/login.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setText("ACEPTAR");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
@@ -93,170 +82,58 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(141, 141, 141)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jRadioButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(buscarclientes)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(direcion5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(110, 110, 110))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comElige, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCedula)
+                                    .addComponent(txtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
+                        .addComponent(btnAceptar))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(buscarclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cedula)
+                    .addComponent(jLabel1)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(direcion5))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(comElige, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnAceptar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyPressed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    }//GEN-LAST:event_txtCedulaKeyPressed
-
-    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
-        if (evt.getKeyCode() != KeyEvent.VK_DELETE) {
-            if (evt.getKeyChar() < '0' || evt.getKeyChar() > '9') {
-                evt.consume();
-            }
-        }
-    }//GEN-LAST:event_txtCedulaKeyTyped
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String tipo = "";
-        boolean bandera = true;
-
-        for (Enumeration<AbstractButton> buttons = buttonGroup1.getElements(); buttons.hasMoreElements();) {
-            AbstractButton button = buttons.nextElement();
-            if (button.isSelected()) {
-                tipo = button.getText();
-            }
-        }
-
-        if (tipo.equals("")) {
-            bandera = false;
-            System.out.println(tipo);
-        }
-        if (0 >= txtCedula.getText().length()) {
-            bandera = false;
-        }
-        if (0 >= txtContra.getText().length()) {
-            bandera = false;
-        }
-        if (bandera) {
-//            boolean pasar = true;
-//            switch (tipo) {
-//                case "USUARIO":
-//                    ControladorLogin controlador = new ControladorLogin();
-//                    boolean res = controlador.loginUsuario(txtCedula.getText(), txtContra.getText());
-//                    if (res) {
-//                        JOptionPane.showMessageDialog(this, "ACCEDE COMO USUARIO ");
-//                        VistaUsuario vu = new VistaUsuario(txtCedula.getText());
-//                        String[] args = null;
-//                        vu.main(txtCedula.getText());
-//                        vu.setCedula(txtCedula.getText());
-//                        pasar = false;
-//                        this.dispose();
-//                    }
-//                    break;
-//                case "SECRETARIA":
-//                    pasar = true;
-//                    ControladorLogin controlador1 = new ControladorLogin();
-//                    boolean res1 = controlador1.loginSecretaria(txtCedula.getText(), txtContra.getText());
-//                    if (res1) {
-//                        JOptionPane.showMessageDialog(this, "ACCEDE COMO SECRETARIA");
-//                        VistaSecretaria vu = new VistaSecretaria();
-//                        String[] args = null;
-//                        vu.main(args);
-//                        pasar = false;
-//                        this.dispose();
-//
-//                    }
-//                    if (pasar) {
-//                        if (txtCedula.getText().equals(cedulaRoot)) {
-//                            if (txtContra.getText().equals(contraRoot)) {
-//                                JOptionPane.showMessageDialog(this, "ACCEDE COMO SECRETARIA ROOT");
-//                                VistaSecretaria vu = new VistaSecretaria();
-//                                String[] args = null;
-//                                vu.main(args);
-//                                pasar = false;
-//                                this.dispose();
-//                            }
-//                        }
-//                    }
-//                    break;
-//                case "ADMINISTRADOR":
-//                    pasar = true;
-//                    pasar = true;
-//                    ControladorLogin controlador2 = new ControladorLogin();
-//                    boolean res2 = controlador2.loginAdministrador(txtCedula.getText(), txtContra.getText());
-//                    if (res2) {
-//                        JOptionPane.showMessageDialog(this, "ACCEDE COMO ADMINISTRADOR");
-//                        VistaAdministrador vu = new VistaAdministrador();
-//                        String[] args = null;
-//                        vu.main(args);
-//                        pasar = false;
-//                        this.dispose();
-//
-//                    }
-//                    
-//                    if (pasar) {
-//                        if (txtCedula.getText().equals(cedulaRoot)) {
-//                            if (txtContra.getText().equals(contraRoot)) {
-//                                JOptionPane.showMessageDialog(this, "ACCEDE COMO USUARIO ROOT");
-//                                VistaAdministrador vu = new VistaAdministrador();
-//                                String[] args = null;
-//                                vu.main(args);
-//                                pasar = false;
-//                                this.dispose();
-//                            }
-//                        }
-//                    }
-//                    break;
-//            }
-//            if(pasar){
-//                JOptionPane.showMessageDialog(this, "No se a econtrado las credenciales");
-//            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Exiten errores en los campos!! \nVerfique los datos ingresados", "LOGIN", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        String usuario = txtCedula.getText();
+        String clave = txtClave.getText();
+        String opc = (String) comElige.getSelectedItem();
+        cp.validar(usuario,clave,opc);
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,7 +161,6 @@ public class Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -295,15 +171,12 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel buscarclientes;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel cedula;
-    private javax.swing.JLabel direcion5;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JComboBox<String> comElige;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JPasswordField txtContra;
+    private javax.swing.JPasswordField txtClave;
     // End of variables declaration//GEN-END:variables
 }
