@@ -5,13 +5,41 @@
  */
 package Controlador;
 
+import conexion.conectar;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author Usuario
  */
 public class ControladorDoctor {
+
     public String esDoctor(String cedula, String clave) {
-        return "DOCTOR";
-        //return null;
+        ControladorPersona cp = new ControladorPersona();
+        String existe = null;
+        int tamano = 0;
+        String id = cp.idPersona(cedula, clave);
+        String sql = "select COUNT(*) from medico where Persona_per_id=?";
+        Connection con = null;
+        try {
+            con = conectar.conectar();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                tamano = rs.getInt(1);
+                if (tamano > 0) {
+                    return existe = "DOCTOR";
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error al buscar medico");
+            e.printStackTrace();
+        } finally {
+            conectar.close(con);
+        }
+        return existe;
     }
 }

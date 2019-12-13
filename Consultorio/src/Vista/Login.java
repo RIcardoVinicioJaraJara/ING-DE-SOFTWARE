@@ -18,7 +18,6 @@ public class Login extends javax.swing.JFrame {
 
     VentanaDoctor vd = new VentanaDoctor();
 
-    
     ControladorPersona cp = new ControladorPersona();
     ControladorDoctor cd = new ControladorDoctor();
     ControladorSecretaria cs = new ControladorSecretaria();
@@ -132,7 +131,7 @@ public class Login extends javax.swing.JFrame {
         String usuario = txtCedula.getText();
         String clave = txtClave.getText();
         String opc = (String) comElige.getSelectedItem();
-        cp.validar(usuario,clave,opc);
+        String ver=cp.validar(usuario, clave, opc);
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
@@ -173,7 +172,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> comElige;
+    public static javax.swing.JComboBox<String> comElige;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtCedula;

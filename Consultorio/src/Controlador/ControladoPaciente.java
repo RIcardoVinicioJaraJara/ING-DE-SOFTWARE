@@ -7,7 +7,6 @@ package Controlador;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import Modelo.Paciente;
@@ -40,8 +39,6 @@ public class ControladoPaciente {
         return query.getResultList();
     }
 
-    
-
     public boolean eliminar(int id) {
         try {
             em.getTransaction().begin();
@@ -66,7 +63,7 @@ public class ControladoPaciente {
             return false;
         }
     }
-    
+
     public Paciente buscarPorId(int id) {
         Paciente u = em.find(Paciente.class, id);
         if (u == null) {
@@ -74,17 +71,17 @@ public class ControladoPaciente {
         }
         return u;
     }
-    
+
     public Paciente findByCedula(String ced) {
         TypedQuery<Paciente> consultaUsuario = em.createNamedQuery("Paciente.findByCedula", Paciente.class);
         consultaUsuario.setParameter("cedula", ced);
         Paciente u;
-        try{
-             u = consultaUsuario.getSingleResult();
-        }catch(Exception e){
+        try {
+            u = consultaUsuario.getSingleResult();
+        } catch (Exception e) {
             u = null;
         }
         return u;
     }
-    
+
 }

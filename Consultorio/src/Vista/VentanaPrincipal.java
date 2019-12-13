@@ -16,10 +16,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
-        Paciente.setVisible(false);
-        Secretaria.setVisible(false);
-        Doctor.setVisible(false);
-        
+        verPaciente.setVisible(false);
+        verSecretaria.setVisible(false);
+        verDoctor.setVisible(false);
+        String opc = (String) Login.comElige.getSelectedItem();
+        if (opc == "PACIENTE") {
+            verPaciente.setVisible(true);
+        } else if (opc == "SECRETARIA") {
+            verSecretaria.setVisible(true);
+        } else if (opc == "DOCTOR") {
+            verDoctor.setVisible(true);
+        }
     }
 
     /**
@@ -36,16 +43,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
-        Paciente = new javax.swing.JMenu();
+        verPaciente = new javax.swing.JMenu();
         pacOpciones = new javax.swing.JMenuItem();
-        Doctor = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
-        Secretaria = new javax.swing.JMenu();
-        contentMenuItem = new javax.swing.JMenuItem();
-        aboutMenuItem = new javax.swing.JMenuItem();
+        verDoctor = new javax.swing.JMenu();
+        docOpciones = new javax.swing.JMenuItem();
+        verSecretaria = new javax.swing.JMenu();
+        secOpciones = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         salCerrar = new javax.swing.JMenuItem();
 
@@ -57,8 +60,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Paciente.setMnemonic('f');
-        Paciente.setText("PACIENTE");
+        verPaciente.setMnemonic('f');
+        verPaciente.setText("PACIENTE");
 
         pacOpciones.setMnemonic('o');
         pacOpciones.setText("OPCIONES");
@@ -67,43 +70,35 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 pacOpcionesActionPerformed(evt);
             }
         });
-        Paciente.add(pacOpciones);
+        verPaciente.add(pacOpciones);
 
-        menuBar.add(Paciente);
+        menuBar.add(verPaciente);
 
-        Doctor.setMnemonic('e');
-        Doctor.setText("DOCTOR");
+        verDoctor.setMnemonic('e');
+        verDoctor.setText("DOCTOR");
 
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Cut");
-        Doctor.add(cutMenuItem);
+        docOpciones.setText("OPCIONES");
+        docOpciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                docOpcionesActionPerformed(evt);
+            }
+        });
+        verDoctor.add(docOpciones);
 
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Copy");
-        Doctor.add(copyMenuItem);
+        menuBar.add(verDoctor);
 
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Paste");
-        Doctor.add(pasteMenuItem);
+        verSecretaria.setMnemonic('h');
+        verSecretaria.setText("SECRETARIA");
 
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        Doctor.add(deleteMenuItem);
+        secOpciones.setText("OPCIONES");
+        secOpciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                secOpcionesActionPerformed(evt);
+            }
+        });
+        verSecretaria.add(secOpciones);
 
-        menuBar.add(Doctor);
-
-        Secretaria.setMnemonic('h');
-        Secretaria.setText("SECRETARIA");
-
-        contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Contents");
-        Secretaria.add(contentMenuItem);
-
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("About");
-        Secretaria.add(aboutMenuItem);
-
-        menuBar.add(Secretaria);
+        menuBar.add(verSecretaria);
 
         jMenu3.setText("SALIR");
 
@@ -134,15 +129,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pacOpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacOpcionesActionPerformed
-        VentanaPaciente vp=new VentanaPaciente();
+        VentanaPaciente vp = new VentanaPaciente();
         desktopPane.add(vp);
     }//GEN-LAST:event_pacOpcionesActionPerformed
 
     private void salCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salCerrarActionPerformed
         Login.main(null);
-        
         this.dispose();
     }//GEN-LAST:event_salCerrarActionPerformed
+
+    private void docOpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docOpcionesActionPerformed
+        VentanaDoctor vd = new VentanaDoctor();
+        desktopPane.add(vd);
+    }//GEN-LAST:event_docOpcionesActionPerformed
+
+    private void secOpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secOpcionesActionPerformed
+        VentanaSecretaria vs = new VentanaSecretaria();
+        desktopPane.add(vs);
+    }//GEN-LAST:event_secOpcionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,23 +184,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JMenu Doctor;
-    public static javax.swing.JMenu Paciente;
-    public static javax.swing.JMenu Secretaria;
-    private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
     public static javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenuItem docOpciones;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pacOpciones;
-    private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JMenuItem salCerrar;
+    private javax.swing.JMenuItem secOpciones;
+    public static javax.swing.JMenu verDoctor;
+    public static javax.swing.JMenu verPaciente;
+    public static javax.swing.JMenu verSecretaria;
     // End of variables declaration//GEN-END:variables
 
 }
