@@ -33,8 +33,6 @@ public class VentanaDoctor extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jButton4 = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
-        btnRegrear = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("DOCTOR");
@@ -48,13 +46,6 @@ public class VentanaDoctor extends javax.swing.JInternalFrame {
 
         jButton4.setText("ATENDER CONSULTA");
 
-        btnRegrear.setText("REGRESAR A LOGIN");
-        btnRegrear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegrearActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,13 +58,8 @@ public class VentanaDoctor extends javax.swing.JInternalFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jSeparator2)
-                    .addComponent(jButton4)
-                    .addComponent(jSeparator3))
+                    .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegrear)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,31 +76,19 @@ public class VentanaDoctor extends javax.swing.JInternalFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnRegrear)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegrearActionPerformed
-        //VentanaLogin vl = new VentanaLogin();
-        //VentanaPrincipal.desktopPane.add(vl);
-        this.dispose();
-    }//GEN-LAST:event_btnRegrearActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegrear;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     // End of variables declaration//GEN-END:variables
 }
