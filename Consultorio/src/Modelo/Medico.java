@@ -55,6 +55,14 @@ public class Medico implements Serializable {
     public Medico() {
     }
 
+    public Medico(Integer medId, String medEspecialidad, Persona personaperid) {
+        this.medId = medId;
+        this.medEspecialidad = medEspecialidad;
+        this.personaperid = personaperid;
+    }
+    
+    
+
     public Medico(Integer medId) {
         this.medId = medId;
     }
