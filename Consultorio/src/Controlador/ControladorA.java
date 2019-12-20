@@ -77,7 +77,7 @@ public class ControladorA {
         return turno;
     }
     
-    public void crearTurno(Turno modelo) {
+    public void crearTurno(Turno modelo, int Paciente, int Medico) {
         Connection con = null;
         String sql = "INSERT INTO truno (tur_hora, tur_fecha, Paciente_pac_id, Medico_med_id1) "
                    + " VALUES (?,?,?,?);";
@@ -86,8 +86,8 @@ public class ControladorA {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDate(1, (Date) modelo.getTurHora());
             ps.setDate(2, (Date) modelo.getTurFecha());
-            ps.setInt(3, modelo.getPacientepacid());
-            ps.setInt(4, modelo.getMedicomedid1());
+            ps.setInt(3, Paciente);
+            ps.setInt(4, Medico);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error al insertar truno");
