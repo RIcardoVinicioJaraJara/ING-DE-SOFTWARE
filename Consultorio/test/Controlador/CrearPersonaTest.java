@@ -68,7 +68,7 @@ public class CrearPersonaTest {
     @Test
     public void testCrear() {
         System.out.println("crear");
-        Persona p = new Persona(1,"0107122418","Jessica","Ñauta","Ricaurte","2475662","08-12-1997","jessy@gmail.com","asdfghj");
+        Persona p = new Persona(0,"0107122198","Erick","Mendez","Azogues","2475662","15-03-1997","erick@gmail.com","12345");
         ControladorPersona instance = new ControladorPersona();
         instance.crear(p);
         

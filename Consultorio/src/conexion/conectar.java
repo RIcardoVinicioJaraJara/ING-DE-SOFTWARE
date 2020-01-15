@@ -5,8 +5,12 @@
  */
 package conexion;
 
+import Controlador.ControladorCliente;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +31,7 @@ public class conectar {
         }
     }
 
+    
     public static void close(Connection con) {
         try {
             con.close();
