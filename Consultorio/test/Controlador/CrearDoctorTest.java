@@ -40,58 +40,34 @@ public class CrearDoctorTest {
     }
 
     /**
-     * Test of conectarBD method, of class ControladorDoctor.
-     */
-//    @Test
-//    public void testConectarBD() {
-//        System.out.println("conectarBD");
-//        ControladorDoctor instance = new ControladorDoctor();
-//        instance.conectarBD();
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-    /**
-     * Test of desconectarBd method, of class ControladorDoctor.
-     */
-//    @Test
-//    public void testDesconectarBd() {
-//        System.out.println("desconectarBd");
-//        ControladorDoctor instance = new ControladorDoctor();
-//        instance.desconectarBd();
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-    /**
      * Test of crear method, of class ControladorDoctor.
      */
     @Test
     public void testCrear() {
         ControladorPersona conPer = new ControladorPersona();
-        Persona persona = conPer.buscar(1);
+        Persona pers = conPer.buscar(1);
         
-        System.out.println("crear");
-        Medico m = new Medico(0, "hola",persona);
+        System.out.println("crear doctor");
+        Medico m = new Medico(0, "Ginecologo", pers);
+        int persona = 0;
         ControladorDoctor instance = new ControladorDoctor();
-        instance.crear(m);
-        
+        instance.crear(m, persona);
     }
 
     /**
      * Test of esDoctor method, of class ControladorDoctor.
      */
-//    @Test
-//    public void testEsDoctor() {
-//        System.out.println("esDoctor");
-//        String cedula = "";
-//        String clave = "";
-//        ControladorDoctor instance = new ControladorDoctor();
-//        String expResult = "";
-//        String result = instance.esDoctor(cedula, clave);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    /*@Test
+    public void testEsDoctor() {
+        System.out.println("esDoctor");
+        String cedula = "";
+        String clave = "";
+        ControladorDoctor instance = new ControladorDoctor();
+        String expResult = "";
+        String result = instance.esDoctor(cedula, clave);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }*/
     
 }
