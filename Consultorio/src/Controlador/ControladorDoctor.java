@@ -21,58 +21,38 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public class ControladorDoctor {
-    
+    /*
+    ControladorPersona conPer = new ControladorPersona();
+        Persona persona = conPer.buscar(1);
+        
+        System.out.println("crear medico");
+        Medico m = new Medico(0, "General", persona);
+        ControladorDoctor instance = new ControladorDoctor();
+        instance.crear(m);
+    */
     private Connection connection;
-    
-    public void conectarBD() {
+
+    public void crear(Medico m, int persona) {
+        Connection con = null;
+        String sql = "INSERT INTO medico(med_id, med_especialidad, per_id)"
+                        + "    VALUES (?,?,?);";
+        
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/consultorio", "root", "");
-            //connection = DriverManager.getConnection("jdbc:mysql://192.168.2.10:3306/facturacion", "root", "root");
-            if (connection != null) {
-                System.out.println(" CONEXION EXITOSA !!! ");
-            }
-        } catch (SQLException ex) {
-            System.out.println(" erro de SQL" + ex);
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
+            con = conectar.conectar();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, m. getMedId());
+            ps.setString(2, m.getMedEspecialidad());
+            ps.setInt(3, persona);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al insertar medico");
+            e.printStackTrace();
+        } finally {
+            conectar.close(con);
         }
     }
 
-    public void desconectarBd() {
-        if (connection != null) {
-            try {
-                connection.close();
-                System.out.println(" DESCONEXION EXITOSA ");
-            } catch (Exception ex) {
-                System.out.println(" error al cerrar conexion");
-            }
-        }
-
-    }
-
-    public void crear(Medico m) {
-        conectarBD();
-        System.out.println("conectado");
-        if (connection != null) {
-            try {
-                String sql = "INSERT INTO medico(med_id, med_especialidad, per_id)\n"
-                        + "    VALUES ("
-                        + "" + m.getMedId()
-                        + ",'" + m.getMedEspecialidad()
-                        + "," + m.getPersonaperid().getPerId()
-                        + ");";
-
-                Statement sentencia = connection.createStatement();
-                sentencia.execute(sql);
-            } catch (SQLException ex) {
-            }
-
-        }
-        //desconectarBd();
-    }
-
+    
     public String esDoctor(String cedula, String clave) {
         ControladorPersona cp = new ControladorPersona();
         String existe = null;

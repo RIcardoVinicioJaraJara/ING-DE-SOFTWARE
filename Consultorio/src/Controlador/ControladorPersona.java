@@ -5,10 +5,12 @@
  */
 package Controlador;
 
+import Modelo.Medico;
 import conexion.conectar;
 import Modelo.Persona;
 import conexion.conectar;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,63 +34,34 @@ public class ControladorPersona {
     ControladorSecretaria cs = new ControladorSecretaria();
     ControladorDoctor cd = new ControladorDoctor();
     
-    public void conectarBD() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/consultorio", "root", "");
-            //connection = DriverManager.getConnection("jdbc:mysql://192.168.2.10:3306/facturacion", "root", "root");
-            if (connection != null) {
-                System.out.println(" CONEXION EXITOSA !!! ");
-            }
-        } catch (SQLException ex) {
-            System.out.println(" erro de SQL" + ex);
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void desconectarBd() {
-        if (connection != null) {
-            try {
-                connection.close();
-                System.out.println(" DESCONEXION EXITOSA ");
-            } catch (Exception ex) {
-                System.out.println(" error al cerrar conexion");
-            }
-        }
-
-    }
-
     public void crear(Persona p) {
-        conectarBD();
-        System.out.println("conectado");
-        if (connection != null) {
-            try {
-                String sql = "INSERT INTO persona(per_id, per_cedula, per_nombre, per_apellido, pre_direccion, per_telefono, per_fec_nacimiento, per_mail, per_contro)\n"
-                        + "    VALUES ("
-                        + "" + p.getPerId()
-                        + ",'" + p.getPerCedula()
-                        + "','" + p.getPerNombre()
-                        + "','" + p.getPerApellido()
-                        + "','" + p.getPreDireccion()
-                        + "','" + p.getPerTelefono()
-                        + "','" + p.getPerFecNacimiento()
-                        + "','" + p.getPerMail()
-                        + "','" + p.getPerContro()
-                        + "');";
-
-                Statement sentencia = connection.createStatement();
-                sentencia.execute(sql);
-            } catch (SQLException ex) {
-            }
-
+        Connection con = null;
+        String sql = "INSERT INTO persona(per_id, per_cedula, per_nombre, per_apellido, pre_direccion, per_telefono, per_fec_nacimiento, per_mail, per_contro)"
+                        + " VALUES (?,?,?,?,?,?,?,?,?);";
+        
+        try {
+            con = conectar.conectar();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, p. getPerId());
+            ps.setString(2, p.getPerCedula());
+            ps.setString(3, p.getPerNombre());
+            ps.setString(4, p.getPerApellido());
+            ps.setString(5, p.getPreDireccion());
+            ps.setString(6, p.getPerTelefono());
+            ps.setString(7, p.getPerFecNacimiento());
+            ps.setString(8, p.getPerMail());
+            ps.setString(9, p.getPerContro());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al insertar persona");
+            e.printStackTrace();
+        } finally {
+            conectar.close(con);
         }
-        //desconectarBd();
     }
     
     public Persona buscar(int codigo) {
-        conectarBD();
+        c.conectar();
         Persona cli = new Persona();
         String sql = "SELECT * FROM persona WHERE per_id=" + codigo + ";";
         Statement sentencia;
@@ -110,11 +83,51 @@ public class ControladorPersona {
 
         } catch (SQLException ex) {
         }
-        desconectarBd();
 
         return cli;
 
     }
+    
+    public Persona buscarCedula(String cedula) {
+        c.conectar();
+        Persona per = new Persona();
+        Medico med = new Medico();
+        String sql = "SELECT p.per_cedula, p.per_nombre, p.per_apellido, m.med_especialidad FROM persona p, medico m WHERE per_cedula='" + cedula + "' AND p.per_id=m.Persona_per_id;";    
+        Statement sentencia;
+        try {
+            sentencia = connection.createStatement();
+            ResultSet rs = sentencia.executeQuery(sql);
+            while (rs.next()) {
+                //per.setPerId(rs.getInt("per_id"));
+                per.setPerCedula(rs.getString("per_cedula"));
+                per.setPerNombre(rs.getString("per_nombre"));
+                per.setPerApellido(rs.getString("per_apellido"));
+                med.setMedEspecialidad(rs.getString("med_especialidad"));
+            }
+        } catch (SQLException ex) {
+            //System.out.println("Error de SQL" + ex);
+        }
+        return per;
+    }
+    
+    public void actualizar(Persona nueva, String codigo) {
+        c.conectar();
+        String sql = "UPDATE persona SET per_cedula=?, per_nombre=?, per_apellido=?"
+                + " WHERE per_cedula='" + codigo + "'";
+
+        try {
+            //  Statement sentencia = conexion.createStatement();
+            PreparedStatement resultado = connection.prepareStatement(sql);
+
+            resultado.setString(1, nueva.getPerCedula());
+            resultado.setString(2, nueva.getPerNombre());
+            resultado.setString(3, nueva.getPerApellido());
+            resultado.executeUpdate();
+
+        } catch (SQLException ex) {
+        }
+    }
+    
     
     public String idPersona(String cedula, String clave) {
         String id = null;
