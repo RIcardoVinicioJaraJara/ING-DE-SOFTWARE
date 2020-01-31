@@ -6,6 +6,7 @@ from Controlador.ControladorPersona import Persona, ControladorPersona
 from Controlador.ControladorPaciente import Paciente, ControladorPaciente
 from Controlador.ControladorMedico import Medico, ControladorMedico
 
+
 class PreubasPersona(unittest.TestCase):
     controladorPer = ControladorPersona(db)
     persona = Persona(10,"0105452171","Ricardo Vinicio", "Jara Jara","Cuenca","0990550716","12/12/1999","vinicio1004@hotmail.com","1004")
