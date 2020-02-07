@@ -16,6 +16,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -33,6 +35,22 @@ public class ControladorPersona {
     ControladoPaciente cp = new ControladoPaciente();
     ControladorSecretaria cs = new ControladorSecretaria();
     ControladorDoctor cd = new ControladorDoctor();
+    
+    public void conectarBD() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/consultorio", "root", "");
+            //connection = DriverManager.getConnection("jdbc:mysql://192.168.2.10:3306/facturacion", "root", "root");
+            if (connection != null) {
+                System.out.println(" CONEXION EXITOSA !!! ");
+            }
+        } catch (SQLException ex) {
+            System.out.println(" erro de SQL" + ex);
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public void crear(Persona p) {
         Connection con = null;
@@ -61,7 +79,7 @@ public class ControladorPersona {
     }
     
     public Persona buscar(int codigo) {
-        c.conectar();
+        conectarBD();
         Persona cli = new Persona();
         String sql = "SELECT * FROM persona WHERE per_id=" + codigo + ";";
         Statement sentencia;
@@ -88,11 +106,41 @@ public class ControladorPersona {
 
     }
     
+    /*public List<Persona> buscarMedico(String cedula) {
+        List<Persona> Person = new ArrayList<>();
+        String sql = "SELECT pe.per_cedula, pe.per_nombre, pe.per_apellido "
+                + "FROM Persona pe, medico me where pe.per_cedula=? && pe.per_id=me.Persona_per_id";
+        Connection con = null;
+        try {
+            con = conectar.conectar();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, cedula);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Persona p = new Persona();
+                Medico m = new Medico();
+                p.setPerCedula(rs.getString("per_cedula").trim());
+                p.setPerNombre(rs.getString("per_nombre").trim());
+                p.setPerApellido(rs.getString("per_apellido"));
+                m.setMedEspecialidad(rs.getString("med_especialidad"));
+                Person.add(p);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al buscar medico");
+            e.printStackTrace();
+        } finally {
+            conectar.close(con);
+        }
+        return Person;
+    }*/
+     
     public Persona buscarCedula(String cedula) {
-        c.conectar();
+        conectarBD();
         Persona per = new Persona();
         Medico med = new Medico();
-        String sql = "SELECT p.per_cedula, p.per_nombre, p.per_apellido, m.med_especialidad FROM persona p, medico m WHERE per_cedula='" + cedula + "' AND p.per_id=m.Persona_per_id;";    
+        String sql = "SELECT per_cedula, per_nombre, per_apellido, pre_direccion, per_telefono, per_fec_nacimiento, per_mail, per_contro FROM persona WHERE per_cedula='" + cedula + "';";    
+        //String sql = "SELECT pe.per_cedula, pe.per_nombre, pe.per_apellido, me.med_especialidad "
+          //      + "FROM persona pe, medico me where pe.per_cedula='" + cedula + "' AND pe.per_id=me.Persona_per_id";
         Statement sentencia;
         try {
             sentencia = connection.createStatement();
@@ -102,7 +150,12 @@ public class ControladorPersona {
                 per.setPerCedula(rs.getString("per_cedula"));
                 per.setPerNombre(rs.getString("per_nombre"));
                 per.setPerApellido(rs.getString("per_apellido"));
-                med.setMedEspecialidad(rs.getString("med_especialidad"));
+                per.setPreDireccion(rs.getString("pre_direccion"));
+                per.setPerTelefono(rs.getString("per_telefono"));
+                per.setPerFecNacimiento(rs.getString("per_fec_nacimiento"));
+                per.setPerMail(rs.getString("per_mail"));
+                per.setPerContro(rs.getString("per_contro"));
+                //med.setMedEspecialidad(rs.getString("med_especialidad"));
             }
         } catch (SQLException ex) {
             //System.out.println("Error de SQL" + ex);
@@ -111,8 +164,8 @@ public class ControladorPersona {
     }
     
     public void actualizar(Persona nueva, String codigo) {
-        c.conectar();
-        String sql = "UPDATE persona SET per_cedula=?, per_nombre=?, per_apellido=?"
+        conectarBD();
+        String sql = "UPDATE persona SET per_cedula=?, per_nombre=?, per_apellido=?, pre_direccion=?, per_telefono=?, per_fec_nacimiento=?, per_mail=?, per_contro=?"
                 + " WHERE per_cedula='" + codigo + "'";
 
         try {
@@ -122,6 +175,11 @@ public class ControladorPersona {
             resultado.setString(1, nueva.getPerCedula());
             resultado.setString(2, nueva.getPerNombre());
             resultado.setString(3, nueva.getPerApellido());
+            resultado.setString(4, nueva.getPreDireccion());
+            resultado.setString(5, nueva.getPerTelefono());
+            resultado.setString(6, nueva.getPerFecNacimiento());
+            resultado.setString(7, nueva.getPerMail());
+            resultado.setString(8, nueva.getPerContro());
             resultado.executeUpdate();
 
         } catch (SQLException ex) {
