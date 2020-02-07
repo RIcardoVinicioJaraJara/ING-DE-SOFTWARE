@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>FACTURACION</title>
+    <!-----Vinculación de archivo css bootstrap 4 ------>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/css/toast.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/css/jquery-ui.css')}}">
+</head>
+
+<body>
+    <div>
+        <div class="card card-body" style="width: 300px;  position:relative; left:40%; top:150px;">
+            {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %} {% endif %} {% endwith %}
+            <form method="POST" action="/login" onsubmit=" return  validarIngresoCliente()">
+                <h5 class="card-title bg-white">CREACION DE USUARIOS</h5>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="usuario" name="usuario" value="" placeholder="usuario">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" id="contracenia" name="contracenia" value=""
+                        placeholder="Contraseña" />
+                </div>
+                <button class=" btn btn-success btn-block ">
+                    LOGIN
+                </button>
+            </form>
+            <div id="alertError">
+
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="{{url_for('static', filename='js/js/jquery-3.3.1.slim.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/js/qrcode.js')}}"></script>
+<script src="{{url_for('static', filename='js/js/jquery-1.11.2.js')}}"></script>
+
+<script src="{{url_for('static', filename='js/js/jquery-ui.js')}}"></script>
+
+<script src="{{url_for('static', filename='js/js/popper.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/js/bootstrap.js')}}"></script>
+
+</html>
